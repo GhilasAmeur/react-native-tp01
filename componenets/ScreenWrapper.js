@@ -9,7 +9,7 @@ import { StyleSheet, View } from "react-native";
         flex :1,
         alignItems : 'center',
         backgroundColor : 'white',
-        justifyContent:'center',
+       justifyContent : 'center',
         paddingHorizontal:'12.5%'
     }
  })

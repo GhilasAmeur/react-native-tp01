@@ -6,37 +6,37 @@ export const ButtonCustom = ({text, onPress, secondary}) => {
      <TouchableOpacity style ={[
         styles.button, secondary ? styles.buttonSecondary : styles.buttonPrimary
      ]} onPress={onPress}>
-        <Text style = {[]} >{text}</Text>
+        <Text style = {[styles.buttonTextPrimary, secondary ? styles.buttonTextSecondary : styles.buttonPrimary]} >{text}</Text>
      </TouchableOpacity>
     )
 }
 
 const styles = StyleSheet.create({
   button: {
-    borderRadius : 4,
-    borderWidth : 1,
-    marginTop : 25,
-    padding:20,
-    width:'100%'
-
+    borderRadius: 4,
+    borderWidth: 1,
+    marginTop: 25,
+    padding: 20,
+    width: "100%",
   },
   buttonPrimary: {
-    backgroundColor : 'purple',
-    borderColor:'purple',
-
-
+    justifyContent: "center",
+    alignItems: "center",
+    backgroundColor: "purple",
+    borderColor: "purple",
   },
   buttonSecondary: {
-    borderColor : 'lightgray'
+    justifyContent: "center",
+    alignItems: "center",
+    borderColor: "lightgray",
   },
   buttonTextPrimary: {
-    color:'white',
-  
+    color: "white",
   },
   buttonTextSecondary: {
-    color : 'purple'
+    color: "purple",
   },
   shadow: {
-    boxShadow:'0 3px 5px rgba(0,0,0.05)'
+    boxShadow: "0 3px 5px rgba(0,0,0.05)",
   },
 });

@@ -1,18 +1,21 @@
-import { View, Text, Button } from "react-native"
+
 import { ButtonCustom, HeaderTittle, ScreenWrapper } from "../componenets";
+import { useNavigation } from "@react-navigation/native";
 
 export const HomeScreen = () => {
+
+  const navigation = useNavigation();
     return (
       <ScreenWrapper>
         
         <HeaderTittle text="Connexion / Inscription" />
         <ButtonCustom
-          text="Connexion"
+          text="CONNEXION"
           onPress={() => navigation.navigate("Connexion")}
         />
 
         <ButtonCustom
-          text="Inscription"
+          text="INSCRIPTION"
           onPress={() => navigation.navigate("Inscription")}
           secondary
         />
