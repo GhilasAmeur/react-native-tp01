@@ -16,7 +16,7 @@ const styles = StyleSheet.create({
     borderRadius: 4,
     borderWidth: 1,
     marginTop: 25,
-    padding: 20,
+    padding: 12,
     width: "100%",
   },
   buttonPrimary: {
@@ -32,6 +32,7 @@ const styles = StyleSheet.create({
   },
   buttonTextPrimary: {
     color: "white",
+    fontWeight: "bold",
   },
   buttonTextSecondary: {
     color: "purple",

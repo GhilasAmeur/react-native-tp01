@@ -1,8 +1,8 @@
 import { View, Text, Button, StyleSheet } from "react-native"
 
-export const HeaderTittle = ({text}) => {
+export const HeaderTittle = ({text, style}) => {
     return (
-     <Text style ={styles.headerTittle}>{text}</Text>
+     <Text style ={[styles.headerTittle, style]}>{text}</Text>
     )
 }
 

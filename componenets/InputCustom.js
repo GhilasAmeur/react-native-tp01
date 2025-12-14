@@ -4,7 +4,7 @@ export const InputCustom = ({value, onChangeText, placeholder,type}) =>{
     return(
         <TextInput 
         value={value} 
-        onChange={onChangeText}
+        onChangeText={onChangeText}
         placeholder={placeholder}
         placeholderTextColor={styles.placeholder}
         keyboardType={type === 'email' ? 'email-address' : 'default'}
