@@ -1,58 +1,23 @@
-import { useNavigation } from "@react-navigation/native";
-import { ButtonCustom } from "./ButtonCustom";
-import { FooterTittle } from "./FooterTittle";
-import { HeaderTittle } from "./HeaderTittle";
-import { InputCustom } from "./InputCustom";
-import { ScreenWrapper } from "./ScreenWrapper";
+import { userService } from "../service/userService";
 import { StyleSheet } from "react-native";
 import { useState } from "react";
-import { users } from "./listUsers";
+import { ButtonCustom, HeaderTittle, ScreenWrapper, FooterTittle, InputCustom, users } from "../componenets";
 
-export const InscriptionScreen = () => {
+export const InscriptionScreen = ({ navigation }) => {
   const [nom, setNom] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const {addUser} = userService()
 
-  const passwordRegex =
-    /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
-  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
-
-  const isValidPassword = (password) => {
-    return passwordRegex.test(password);
-  };
-  const isValidEmail = (email) => {
-    return emailRegex.test(email);
-  };
-
-  const addUser = () => {
-    if (nom.trim() === "" || email.trim() === "" || password.trim() === "") {
-      alert("Tous les champs sont obligatoire");
-      return;
-    }
-
-    if (!isValidEmail(email)) {
-      alert("Email non valide");
-      return;
-    }
-
-    if (!isValidPassword(password)) {
-      alert("Mot de passe invalide, 8 caractères, 1 majuscule, 1 minuscule");
-      return;
-    }
-
-    const user = {
-      nom,
-      email,
-      password,
+ 
+  const handleInscription = async () => {
+      await addUser(nom, email, password)
+      setNom("")
+      setEmail("")
+      setPassword("")
+    
     };
-    users.push(user);
-    alert("Utilisateur ajouté avec succès");
-    setNom("")
-    setEmail("")
-    setPassword("")
-  };
 
-  const navigation = useNavigation();
   return (
     <ScreenWrapper>
       <HeaderTittle text="Inscription" />
@@ -69,7 +34,7 @@ export const InscriptionScreen = () => {
         onChangeText={setPassword}
         type="password"
       />
-      <ButtonCustom text="INSCRIPTION" onPress={addUser} />
+      <ButtonCustom text="INSCRIPTION" onPress={handleInscription} />
       <FooterTittle
         text="Déjà inscrit ?"
         action="Connectez vous"

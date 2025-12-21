@@ -1,17 +1,16 @@
-import { useNavigation } from "@react-navigation/native";
-import { ButtonCustom } from "./ButtonCustom";
-import { FooterTittle } from "./FooterTittle";
 
-import { HeaderTittle } from "./HeaderTittle";
-import { InputCustom } from "./InputCustom";
-import { ScreenWrapper } from "./ScreenWrapper";
 import { StyleSheet } from "react-native";
 import { useState } from "react";
-import { users } from "./listUsers";
+import { ButtonCustom, HeaderTittle, ScreenWrapper, InputCustom, FooterTittle, users } from "../componenets";
+import { userService } from "../service/userService";
 
-export const ConnexionScreen = () => {
+export const ConnexionScreen = ({navigation}) => {
+
+ 
+
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const {loginUser} = userService()
 
   const handlepassword = (text) => {
     setPassword(text);
@@ -19,21 +18,17 @@ export const ConnexionScreen = () => {
   const handleemail = (text) => {
     setEmail(text);
   };
-  const handleconnexion = () => {
-    const user = users.find((u) => u.email === email);
-    if (!user) {
-      alert("Email n'esxiste pas.");
-      return;
-    }
-    if (user.password != password) {
-      alert("Mot de passe incorrect.");
-      return;
-    } else {
+
+  const handleconnexion = async () => {
+ 
+      const user =  await loginUser(email, password)
+      if(!user){ //très important sinon quand je mets rien dans les input renvois erreur !
+        return
+      }
       navigation.navigate("IsConnected", { user });
-    }
+    
   };
 
-  const navigation = useNavigation();
   return (
     <ScreenWrapper>
       <HeaderTittle text="Connexion" />
@@ -54,6 +49,11 @@ export const ConnexionScreen = () => {
         text="S'inscrire"
         style={styles.header}
         onPress={() => navigation.navigate("Inscription")}
+      />
+      <FooterTittle
+        text="Mot de passe oublié ?"
+        style={styles.header}
+        onPress={() => navigation.navigate("ForgetPassword")}
       />
     </ScreenWrapper>
   );
